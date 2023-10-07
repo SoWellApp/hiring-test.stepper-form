@@ -1,162 +1,112 @@
 <template>
-  <q-markup-table flat bordered>
-    <thead>
-      <tr>
-        <th colspan="3">
-          <div class="row no-wrap items-center">
-            <div class="text-h6 q-ml-md">Personal info</div>
-          </div>
-        </th>
-      </tr>
-      <tr>
-        <th class="text-left" width="15%">Label</th>
-        <th class="text-right" width="80%">Value</th>
-        <th class="text-right" width="5%">Validity</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="text-left">Firstname</td>
-        <td class="text-right">{{ form.firstname }}</td>
-        <td class="text-right">
-          <q-icon name="check" color="positive" size="2em"></q-icon>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-left">Lastname</td>
-        <td class="text-right">{{ form.lastname }}</td>
-        <td class="text-right">
-          <q-icon name="error" color="negative" size="2em"></q-icon>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-left">Birthdate</td>
-        <td class="text-right">{{ form.birthdate }}</td>
-        <td class="text-right">
-          <q-icon name="check" color="positive" size="2em"></q-icon>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-left">Bio</td>
-        <td class="text-right">{{ form.bio }}</td>
-        <td class="text-right">
-          <q-icon name="check" color="positive" size="2em"></q-icon>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="3">
-          <div class="row no-wrap items-center">
-            <div class="text-h6 q-ml-md">Professional info</div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-left">English proficiency</td>
-        <td class="text-right">{{ form.professional.english }}</td>
-        <td class="text-right">
-          <q-icon name="check" color="positive" size="2em"></q-icon>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-left">French proficiency</td>
-        <td class="text-right">{{ form.professional.french }}</td>
-        <td class="text-right">
-          <q-icon name="error" color="negative" size="2em"></q-icon>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-left">German proficiency</td>
-        <td class="text-right">{{ form.professional.german }}</td>
-        <td class="text-right">
-          <q-icon name="check" color="positive" size="2em"></q-icon>
-        </td>
-      </tr>
-      <template v-if="form.professional.degrees.length">
-        <tr>
-          <td colspan="3">
-            <div class="row no-wrap items-center">
-              <div class="text-h6 q-ml-md">Degrees</div>
-            </div>
-          </td>
-        </tr>
-        <template
-          v-for="(degree, i) in form.professional.degrees"
-          :key="degree.id"
-        >
-          <tr>
-            <td class="text-left">Title</td>
-            <td class="text-right">{{ degree.title }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">Field</td>
-            <td class="text-right">{{ degree.field }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">Year</td>
-            <td class="text-right">{{ degree.year }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">Details</td>
-            <td class="text-right">{{ degree.details }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr v-if="i < form.professional.degrees.length">
-            <td colspan="3"></td>
-          </tr>
-        </template>
-      </template>
-      <template v-if="form.published_works_count > 0">
-        <tr>
-          <td colspan="3">
-            <div class="row no-wrap items-center">
-              <div class="text-h6 q-ml-md">Publications</div>
-            </div>
-          </td>
-        </tr>
-        <template v-for="(work, i) in form.published_works" :key="work.id">
-          <tr>
-            <td class="text-left">Title</td>
-            <td class="text-right">{{ work.title }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">Link</td>
-            <td class="text-right">{{ work.link }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-left">Year</td>
-            <td class="text-right">{{ work.year }}</td>
-            <td class="text-right">
-              <q-icon name="check" color="positive" size="2em"></q-icon>
-            </td>
-          </tr>
-          <tr v-if="i < form.published_works_count - 1">
-            <td colspan="3"></td>
-          </tr>
-        </template>
-      </template>
-    </tbody>
-  </q-markup-table>
+  <table-container-array
+    title="Personal info"
+    :contentArray="personalInfo"
+  ></table-container-array>
+
+  <table-container-array
+    title="Professional info"
+    :contentArray="professionalInfo"
+  ></table-container-array>
+
+  <table-container-matrix
+    title="Degrees"
+    :contentMatrix="degrees"
+    :show="form.professional.degrees.length > 0"
+    :superiorValue="form.professional.degrees.length - 1"
+  ></table-container-matrix>
+
+  <table-container-matrix
+    title="Publications"
+    :contentMatrix="publications"
+    :show="form.published_works_count > 0"
+    :superiorValue="form.published_works_count - 1"
+  ></table-container-matrix>
 </template>
+
 <script setup lang="ts">
+import TableContainerArray from 'src/components/TableContainerArray.vue';
+import TableContainerMatrix from 'src/components/TableContainerMatrix.vue';
+import { computed } from 'vue';
+import { Row } from 'src/types/types';
 import { useFormStore } from 'src/stores/form-store';
 const { form } = useFormStore();
+const personalInfo = computed<Row[]>(() => [
+  { label: 'First name', value: form.firstname, validity: true },
+  { label: 'Last name', value: form.lastname, validity: false },
+  { label: 'Birthdate', value: form.birthdate, validity: true },
+  { label: 'Bio', value: form.bio, validity: false },
+]);
+const professionalInfo = computed<Row[]>(() => [
+  {
+    label: 'English proficiency',
+    value: form.professional.english,
+    validity: true,
+  },
+  {
+    label: 'French proficiency',
+    value: form.professional.french,
+    validity: true,
+  },
+  {
+    label: 'German proficiency',
+    value: form.professional.english,
+    validity: true,
+  },
+]);
+const degrees = computed<Array<Row[]>>(() =>
+  form.professional.degrees.map((degree) => [
+    {
+      label: 'Title',
+      value: degree.title,
+      validity: true,
+    },
+    {
+      label: 'Field',
+      value: degree.field,
+      validity: true,
+    },
+    {
+      label: 'Year',
+      value: degree.year,
+      validity: true,
+    },
+    {
+      label: 'Details',
+      value: degree.details,
+      validity: true,
+    },
+    {
+      label: 'id',
+      value: degree.id,
+      validity: true,
+    },
+  ])
+);
+const publications = computed<Array<Row[]>>(() =>
+  form.published_works.map((work) => [
+    {
+      label: 'link',
+      value: work.link,
+      validity: true,
+    },
+    {
+      label: 'title',
+      value: work.title,
+      validity: true,
+    },
+    {
+      label: 'year',
+      value: work.year,
+      validity: true,
+    },
+    {
+      label: 'id',
+      value: work.id,
+      validity: true,
+    },
+  ])
+);
 </script>
 
 <style>
