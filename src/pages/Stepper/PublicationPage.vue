@@ -7,7 +7,12 @@
             <q-icon name="book" />
           </template>
         </q-input>
-        <q-input outlined label="Field" v-model="work.link">
+        <q-input
+          outlined
+          label="Field"
+          v-model="work.link"
+          :rules="[(val) => checkLink(val) || 'Please type a valid link']"
+        >
           <template v-slot:prepend>
             <q-icon name="link" />
           </template>
@@ -17,7 +22,7 @@
           v-model.number="work.year"
           type="number"
           :rules="[
-            (val) => (val >= 1923 && val < 2023) || 'Please type a valid year',
+            (val) => (val >= 1923 && val <= 2023) || 'Please type a valid year',
           ]"
           outlined
         >
@@ -32,5 +37,6 @@
 </template>
 <script setup lang="ts">
 import { useFormStore } from 'src/stores/form-store';
+import { checkLink } from 'src/utils/check';
 const { form } = useFormStore();
 </script>
