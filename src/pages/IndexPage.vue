@@ -23,7 +23,7 @@
         :name="3"
         title="Publications"
         :icon="ionBookOutline"
-        :disable="form.published_works_count === 0"
+        :disable="form.published_works_count == 0"
       >
         <publication-page></publication-page>
       </q-step>

@@ -11,7 +11,7 @@
           outlined
           label="Field"
           v-model="work.link"
-          :rules="[(val) => checkLink(val) || 'Please type a valid link']"
+          :rules="[(val) => isValidLink(val) || 'Please type a valid link']"
         >
           <template v-slot:prepend>
             <q-icon name="link" />
@@ -37,6 +37,6 @@
 </template>
 <script setup lang="ts">
 import { useFormStore } from 'src/stores/form-store';
-import { checkLink } from 'src/utils/check';
+import { isValidLink } from 'src/utils/check';
 const { form } = useFormStore();
 </script>

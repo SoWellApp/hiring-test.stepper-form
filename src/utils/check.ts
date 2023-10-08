@@ -1,4 +1,4 @@
-export const checkLink = (link: string) => {
+export const isValidLink = (link: string): boolean => {
   const url = new RegExp(
     '^(https?:\\/\\/)' + // validate protocol
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // validate domain name
@@ -10,3 +10,19 @@ export const checkLink = (link: string) => {
   ); // validate fragment locator
   return !!url.test(link);
 };
+
+export const isNotEmpty = (val: unknown): boolean =>
+  val !== null &&
+  val !== undefined &&
+  (typeof val !== 'string' || val.trim() !== '') &&
+  (Array.isArray(val) ? val.length > 0 : true);
+
+export const isValidDate = (val: string): boolean => {
+  const date = new Date(val);
+  return !isNaN(date.getTime());
+};
+
+export const isPositiveNumber = (val: number): boolean => val > 0;
+
+export const isValidYear = (val: number): boolean =>
+  Number.isInteger(val) && val >= 1 && val <= 9999;

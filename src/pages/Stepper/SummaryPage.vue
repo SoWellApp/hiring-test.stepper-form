@@ -27,39 +27,65 @@
 <script setup lang="ts">
 import TableContainerArray from 'src/components/TableContainerArray.vue';
 import TableContainerMatrix from 'src/components/TableContainerMatrix.vue';
+
 import { computed } from 'vue';
 import { Row } from 'src/types/types';
 import { useFormStore } from 'src/stores/form-store';
+import {
+  isNotEmpty,
+  isValidDate,
+  isPositiveNumber,
+  isValidYear,
+  isValidLink,
+} from 'src/utils/check';
+
 const { form } = useFormStore();
+
 const personalInfo = computed<Row[]>(() => [
-  { label: 'First name', value: form.firstname, validity: true },
-  { label: 'Last name', value: form.lastname, validity: false },
-  { label: 'Birthdate', value: form.birthdate, validity: true },
-  { label: 'Bio', value: form.bio, validity: false },
+  {
+    label: 'First name',
+    value: form.firstname,
+    validity: isNotEmpty(form.firstname),
+  },
+  { label: 'Last name', value: form.lastname, validity: true },
+  {
+    label: 'Birthdate',
+    value: form.birthdate,
+    validity: isNotEmpty(form.birthdate) && isValidDate(form.birthdate),
+  },
+  { label: 'Bio', value: form.bio, validity: true },
 ]);
+
 const professionalInfo = computed<Row[]>(() => [
   {
     label: 'English proficiency',
     value: form.professional.english,
-    validity: true,
+    validity:
+      isNotEmpty(form.professional.english) &&
+      isPositiveNumber(form.professional.english),
   },
   {
     label: 'French proficiency',
     value: form.professional.french,
-    validity: true,
+    validity:
+      isNotEmpty(form.professional.french) &&
+      isPositiveNumber(form.professional.french),
   },
   {
     label: 'German proficiency',
-    value: form.professional.english,
-    validity: true,
+    value: form.professional.german,
+    validity:
+      isNotEmpty(form.professional.german) &&
+      isPositiveNumber(form.professional.german),
   },
 ]);
+
 const degrees = computed<Array<Row[]>>(() =>
   form.professional.degrees.map((degree) => [
     {
       label: 'Title',
       value: degree.title,
-      validity: true,
+      validity: isNotEmpty(degree.title),
     },
     {
       label: 'Field',
@@ -69,7 +95,7 @@ const degrees = computed<Array<Row[]>>(() =>
     {
       label: 'Year',
       value: degree.year,
-      validity: true,
+      validity: isNotEmpty(degree.year) && isValidYear(degree.year),
     },
     {
       label: 'Details',
@@ -83,22 +109,23 @@ const degrees = computed<Array<Row[]>>(() =>
     },
   ])
 );
+
 const publications = computed<Array<Row[]>>(() =>
   form.published_works.map((work) => [
     {
-      label: 'link',
-      value: work.link,
-      validity: true,
-    },
-    {
       label: 'title',
       value: work.title,
-      validity: true,
+      validity: isNotEmpty(work.title),
+    },
+    {
+      label: 'link',
+      value: work.link,
+      validity: isNotEmpty(work.link) && isValidLink(work.link),
     },
     {
       label: 'year',
       value: work.year,
-      validity: true,
+      validity: isNotEmpty(work.year) && isValidYear(work.year),
     },
     {
       label: 'id',
@@ -108,10 +135,3 @@ const publications = computed<Array<Row[]>>(() =>
   ])
 );
 </script>
-
-<style>
-td {
-  max-width: 400px;
-  overflow: scroll;
-}
-</style>

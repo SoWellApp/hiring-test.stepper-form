@@ -12,9 +12,9 @@ export const useFormStore = defineStore('form', () => {
     published_works_count: 0,
     published_works: [] as Work[],
     professional: {
-      english: 0,
-      french: 0,
-      german: 0,
+      english: 0 as number,
+      french: 0 as number,
+      german: 0 as number,
       degrees: [] as Degree[],
     },
   });

@@ -1,5 +1,5 @@
 <template>
-  <q-markup-table flat bordered class="q-mb-lg" v-if="show">
+  <q-markup-table flat bordered separator="cell" class="q-mb-lg" v-if="show">
     <table-head :title="title"></table-head>
     <tbody>
       <template
