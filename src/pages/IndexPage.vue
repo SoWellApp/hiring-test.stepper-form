@@ -24,11 +24,16 @@
         title="Publications"
         :icon="ionBookOutline"
         :disable="form.published_works_count == 0"
+        :done="step > 3"
       >
         <publication-page></publication-page>
       </q-step>
 
-      <q-step :name="4" title="Summary" :icon="ionSaveOutline">
+      <q-step :name="4" title="Users" :icon="ionPeopleOutline" :done="step > 4">
+        <users-page></users-page>
+      </q-step>
+
+      <q-step :name="5" title="Summary" :icon="ionSaveOutline">
         <summary-page></summary-page>
       </q-step>
 
@@ -58,6 +63,7 @@ import {
   PersonalPage,
   ProPage,
   PublicationPage,
+  UsersPage,
   SummaryPage,
 } from 'src/pages/Stepper';
 import {
@@ -65,6 +71,7 @@ import {
   ionDocumentAttachOutline,
   ionBookOutline,
   ionSaveOutline,
+  ionPeopleOutline,
 } from '@quasar/extras/ionicons-v5';
 import { ref } from 'vue';
 
