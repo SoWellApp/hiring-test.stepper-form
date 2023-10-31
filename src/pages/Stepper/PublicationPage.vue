@@ -7,7 +7,16 @@
             <q-icon name="book" />
           </template>
         </q-input>
-        <q-input outlined label="Field" v-model="work.link">
+        <q-input
+          outlined
+          label="Field"
+          v-model="work.link"
+          :rules="[
+            (val) =>
+              /^(https|http):\/\/[^\s/$?#]+\.[a-zA-Z]+$/.test(val) ||
+              'Please type a valid link',
+          ]"
+        >
           <template v-slot:prepend>
             <q-icon name="link" />
           </template>
