@@ -2,7 +2,12 @@
   <q-form>
     <template v-for="work in form.published_works" :key="work.id">
       <div class="column q-gutter-y-sm">
-        <q-input outlined label="Title" v-model="work.title">
+        <q-input
+          outlined
+          label="Title"
+          v-model="work.title"
+          :rules="[(val) => String(val).length > 0] || 'Required field'"
+        >
           <template v-slot:prepend>
             <q-icon name="book" />
           </template>
@@ -12,6 +17,7 @@
           label="Field"
           v-model="work.link"
           :rules="[
+            (val) => String(val).length > 0 || 'Required field',
             (val) =>
               /^(https|http):\/\/[^\s/$?#]+\.[a-zA-Z]+$/.test(val) ||
               'Please type a valid link',
@@ -26,6 +32,7 @@
           v-model.number="work.year"
           type="number"
           :rules="[
+            (val) => String(val).length > 0 || 'Required field',
             (val) => (val >= 1923 && val < 2023) || 'Please type a valid year',
           ]"
           outlined

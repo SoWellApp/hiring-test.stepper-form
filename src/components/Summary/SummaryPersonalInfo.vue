@@ -14,9 +14,17 @@ import { useFormStore } from 'src/stores/form-store';
 const { form } = useFormStore();
 
 const rows = ref<{ label: string; value: string; icon: 'check' | 'error' }[]>([
-  { label: 'Firstname', value: form.firstname, icon: 'check' },
-  { label: 'Lastname', value: form.lastname, icon: 'error' },
-  { label: 'Birthdate', value: form.birthdate, icon: 'check' },
+  {
+    label: 'Firstname',
+    value: form.firstname,
+    icon: form.firstname.length > 0 ? 'check' : 'error',
+  },
+  { label: 'Lastname', value: form.lastname, icon: 'check' },
+  {
+    label: 'Birthdate',
+    value: form.birthdate,
+    icon: /^\d{4}\/\d{2}\/\d{2}/ ? 'check' : 'error',
+  },
   { label: 'Bio', value: form.bio, icon: 'check' },
 ]);
 </script>

@@ -47,6 +47,7 @@
                   outlined
                   label="Title"
                   v-model="degree.title"
+                  :rules="[(val) => String(val).length > 0 || 'Required field']"
                 ></q-input>
                 <q-btn
                   rounded
@@ -71,6 +72,7 @@
                 v-model.number="degree.year"
                 type="number"
                 :rules="[
+                  (val) => String(val).length > 0 || 'Required field',
                   (val) =>
                     (val >= 1923 && val < 2023) || 'Please type a valid year',
                 ]"

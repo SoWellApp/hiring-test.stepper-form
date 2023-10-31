@@ -1,13 +1,18 @@
 <template>
   <q-form class="column q-gutter-y-md">
-    <q-input outlined label="First name" v-model="form.firstname"></q-input>
+    <q-input
+      outlined
+      label="First name"
+      v-model="form.firstname"
+      :rules="[(val) => String(val).length > 0 || 'Required field']"
+    ></q-input>
     <q-input outlined label="Last name" v-model="form.lastname"></q-input>
     <q-input
       outlined
       label="Birthdate"
       v-model="form.birthdate"
       mask="date"
-      :rules="['date']"
+      :rules="[(val) => String(val).length > 0 || 'Required field', 'date']"
     >
       <template v-slot:append>
         <q-icon name="event" class="cursor-pointer">

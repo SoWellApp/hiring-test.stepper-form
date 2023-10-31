@@ -3,13 +3,21 @@
     <great-header-row text="Degrees"></great-header-row>
     <template v-for="(degree, i) in form.professional.degrees" :key="degree.id">
       <summary-row
-        :row="{ label: 'Title', value: degree.title, icon: 'check' }"
+        :row="{
+          label: 'Title',
+          value: degree.title,
+          icon: degree.title.length > 0 ? 'check' : 'error',
+        }"
       ></summary-row>
       <summary-row
         :row="{ label: 'Field', value: degree.field, icon: 'check' }"
       ></summary-row>
       <summary-row
-        :row="{ label: 'Year', value: degree.year + '', icon: 'check' }"
+        :row="{
+          label: 'Year',
+          value: degree.year + '',
+          icon: degree.year >= 1923 && degree.year < 2023 ? 'check' : 'error',
+        }"
       ></summary-row>
       <summary-row
         :row="{ label: 'Details', value: degree.details, icon: 'check' }"

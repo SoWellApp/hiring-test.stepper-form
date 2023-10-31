@@ -18,17 +18,17 @@ const rows = ref<Row[]>([
   {
     label: 'English proficiency',
     value: form.professional.english + '',
-    icon: 'check',
+    icon: +form.professional.english > 0 ? 'check' : 'error',
   },
   {
     label: 'French proficiency',
     value: form.professional.french + '',
-    icon: 'error',
+    icon: +form.professional.french > 0 ? 'check' : 'error',
   },
   {
     label: 'German proficiency',
     value: form.professional.german + '',
-    icon: 'check',
+    icon: +form.professional.german > 0 ? 'check' : 'error',
   },
 ]);
 </script>
