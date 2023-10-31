@@ -13,10 +13,28 @@ export interface Degree {
 export interface Work {
   title: string;
   year: number;
-  link: '';
+  link: string;
 }
+
+export interface Professional {
+  english: number;
+  french: number;
+  german: number;
+  degrees: Degree[];
+}
+
+export interface Form {
+  firstname: string;
+  lastname: string;
+  birthdate: string;
+  bio: string;
+  published_works_count: number;
+  published_works: Work[];
+  professional: Professional;
+}
+
 export const useFormStore = defineStore('form', () => {
-  const form = ref({
+  const form = ref<Form>({
     firstname: '',
     lastname: '',
     birthdate: '',
