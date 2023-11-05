@@ -9,7 +9,7 @@
         </q-input>
         <q-input
           outlined
-          label="Field"
+          label="Link"
           v-model="work.link"
           :rules="[
             (val) =>

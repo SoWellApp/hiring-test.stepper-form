@@ -55,7 +55,7 @@ export const useFormStore = defineStore('form', () => {
             return {
               id: uuidv4(),
               title: '',
-              year: 2023,
+              year: 2022,
               link: '',
             } as Work;
           });

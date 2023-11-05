@@ -98,7 +98,7 @@ const addDegree = () => {
     title: '',
     field: '',
     details: '',
-    year: 2023,
+    year: 2022,
   });
 };
 
