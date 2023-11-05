@@ -28,7 +28,7 @@
         <publication-page></publication-page>
       </q-step>
 
-      <q-step :name="4" title="Users" :icon="ionPerson">
+      <q-step :name="4" title="Users" :icon="ionPerson" :done="step > 4">
         <user-page></user-page>
       </q-step>
       <q-step :name="5" title="Summary" :icon="ionSaveOutline">
