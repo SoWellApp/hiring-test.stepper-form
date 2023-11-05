@@ -28,7 +28,10 @@
         <publication-page></publication-page>
       </q-step>
 
-      <q-step :name="4" title="Summary" :icon="ionSaveOutline">
+      <q-step :name="4" title="Users" :icon="ionPerson">
+        <user-page></user-page>
+      </q-step>
+      <q-step :name="5" title="Summary" :icon="ionSaveOutline">
         <summary-page></summary-page>
       </q-step>
 
@@ -37,7 +40,7 @@
           <q-btn
             @click="stepper.next()"
             color="primary"
-            :label="step === 4 ? 'Finish' : 'Continue'"
+            :label="step === 5 ? 'Finish' : 'Continue'"
           />
           <q-btn
             v-if="step > 1"
@@ -59,12 +62,14 @@ import {
   ProPage,
   PublicationPage,
   SummaryPage,
+  UserPage,
 } from 'src/pages/Stepper';
 import {
   ionPersonOutline,
   ionDocumentAttachOutline,
   ionBookOutline,
   ionSaveOutline,
+  ionPerson,
 } from '@quasar/extras/ionicons-v5';
 import { ref } from 'vue';
 
