@@ -4,8 +4,15 @@
     <td class="text-right">{{ props.value }}</td>
     <td class="text-right">
       <q-icon
-        :name="isValid ? 'check' : 'error'"
-        :color="isValid ? 'positive' : 'negative'"
+        v-if="props.isValid === null"
+        name="check"
+        color="positive"
+        size="2em"
+      ></q-icon>
+      <q-icon
+        v-else
+        :name="iconName(props.isValid(props.value))"
+        :color="iconColor(props.isValid(props.value))"
         size="2em"
       ></q-icon>
     </td>
@@ -22,8 +29,16 @@ const props = defineProps({
     required: true,
   },
   isValid: {
-    type: Boolean,
-    required: true,
+    type: Function || null,
+    default: null,
   },
 });
+
+const iconName = (valid: boolean) => {
+  return valid ? 'check' : 'error';
+};
+
+const iconColor = (valid: boolean) => {
+  return valid ? 'positive' : 'negative';
+};
 </script>
