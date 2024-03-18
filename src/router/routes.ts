@@ -7,11 +7,17 @@ const routes: RouteRecordRaw[] = [
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
-        name: "index",
-        path: "",
-        component: () => import("pages/IndexPage.vue"),
-        meta: { title: "Index" }
-      }
+        name: 'index',
+        path: '',
+        component: () => import('pages/IndexPage.vue'),
+        meta: { title: 'Index' },
+      },
+      {
+        name: 'user',
+        path: 'user',
+        component: () => import('pages/UserList.vue'),
+        meta: { title: 'UserPage' },
+      },
     ],
     beforeEnter: (to, from, next) => {
       if (!SessionStorage.has("loggedUser") && to.name !== "login") {

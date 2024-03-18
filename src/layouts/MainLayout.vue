@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>{{ title }}</q-toolbar-title>
-
+        <q-btn style="margin-right: 16px" to="/user"> User </q-btn>
         <div>Welcome, {{ username }}</div>
         <q-btn
           class="q-ml-md"
