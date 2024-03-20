@@ -20,12 +20,15 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { User } from 'src/types/interfaces';
 import ListItem from 'src/components/ListItem.vue';
-import data from './data.json';
+import { useUserStore } from 'src/stores/user.store';
 
-const usersList = ref<User[]>(data);
+const userStore = useUserStore();
+const usersList = computed(() => userStore.usersList);
+
 const search = ref('');
+
+onMounted(async () => await userStore.getAllUsers());
 
 const filteredUsersList = computed(() => {
   const searchValue = search.value.toLowerCase();
