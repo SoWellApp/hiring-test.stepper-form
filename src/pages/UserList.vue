@@ -10,18 +10,23 @@
 
           <q-item-section side top>
             <q-item-label caption
-              >{{ users.length }} pesonne{{
-                users.length > 1 ? 's' : ''
+              >{{ filtredUsers.length }} pesonne{{
+                filtredUsers.length > 1 ? 's' : ''
               }}</q-item-label
             >
           </q-item-section>
         </q-item>
 
         <q-separator spaced />
+        <q-input color="teal" filled v-model="search" label="name, email">
+          <template v-slot:prepend>
+            <q-icon name="search" size="30px" />
+          </template>
+        </q-input>
         <q-item-label header>List d'utilisateurs</q-item-label>
 
         <load-list-item :len="5" v-if="isLoading" />
-        <template v-for="(item, index) in users" :key="index">
+        <template v-for="(item, index) in filtredUsers" :key="index">
           <list-item :label="item.username" :caption="item.email" />
         </template>
       </q-list>
@@ -38,10 +43,9 @@ import { storeToRefs } from 'pinia';
 
 const userStore = useUserStore();
 
-const { users, isLoading } = storeToRefs(userStore)
+const { isLoading, search, filtredUsers } = storeToRefs(userStore);
 
 onMounted(async () => {
   await userStore.getUsersList();
 });
-
 </script>
