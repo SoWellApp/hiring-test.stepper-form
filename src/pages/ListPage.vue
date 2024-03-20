@@ -14,12 +14,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { User } from 'src/types/interfaces';
+import UserCard from 'src/components/UserCard.vue';
 import data from './data.json';
 
-const usersList = ref(data);
+const userList = ref<User[]>([]);
+const searchKeyword = ref('');
 
-const search = ref('');
+onMounted(() => {
+  userList.value = ref(data);
+});
 
 const filteredUsersList = computed(() => {
   const searchValue = search.value.toLowerCase();
