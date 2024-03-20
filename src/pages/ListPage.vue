@@ -19,26 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import ListItem from 'src/components/ListItem.vue';
 import { useUserStore } from 'src/stores/user.store';
+import { storeToRefs } from 'pinia';
 
 const userStore = useUserStore();
-const usersList = computed(() => userStore.usersList);
 
-const search = ref('');
+const { search, filteredUsersList } = storeToRefs(userStore);
 
 onMounted(async () => await userStore.getAllUsers());
-
-const filteredUsersList = computed(() => {
-  const searchValue = search.value.toLowerCase();
-
-  return usersList.value.filter((user) => {
-    return (
-      user.name.firstname.toLowerCase().indexOf(searchValue) !== -1 ||
-      user.name.lastname.toLowerCase().indexOf(searchValue) !== -1 ||
-      !searchValue
-    );
-  });
-});
 </script>
