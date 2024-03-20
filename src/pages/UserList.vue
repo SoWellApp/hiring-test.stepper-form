@@ -20,53 +20,39 @@
         <q-separator spaced />
         <q-item-label header>List d'utilisateurs</q-item-label>
 
-        <q-item v-for="user of users" :key="user.email" clickable>
-          <q-item-section top avatar>
-            <q-avatar>
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label>{{ user.fname }}</q-item-label>
-            <q-item-label caption>{{ user.email }}</q-item-label>
-          </q-item-section>
-
-          <q-item-section side top v-if="user.points > 50">
-            <q-badge label="master" />
-          </q-item-section>
+        <q-item v-for="user in users" :key="user.email">
+          <user-card :user="user" />
         </q-item>
       </q-list>
     </div>
   </q-page>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      users: [
-        {
-          fname: 'herifanantenana',
-          email: 'fana@sowell.com',
-          points: 2,
-        },
-        {
-          fname: 'rakoto',
-          email: 'koto@sowell.com',
-          points: 2,
-        },
-        {
-          fname: 'Jeni',
-          email: 'jeni@sowell.com',
-          points: 150,
-        },
-        {
-          fname: 'zo',
-          email: 'zo@sowell.com',
-          points: 110,
-        },
-      ],
-    };
+
+<script setup lang="ts">
+import UserCard from '../components/User/UserCard.vue';
+import { ref } from 'vue';
+
+const users = ref([
+  {
+    fname: 'herifanantenana',
+    email: 'fana@sowell.com',
+    points: 2,
   },
-};
+  {
+    fname: 'rakoto',
+    email: 'koto@sowell.com',
+    points: 2,
+  },
+  {
+    fname: 'Jeni',
+    email: 'jeni@sowell.com',
+    points: 150,
+  },
+  {
+    fname: 'zo',
+    email: 'zo@sowell.com',
+    points: 110,
+  },
+]);
+
 </script>
