@@ -14,11 +14,8 @@
 </template>
 
 <script setup lang="ts">
-// import { User } from 'src/models/UserInterface';
-
 defineProps<{
   label: string;
   caption: string;
 }>();
-
 </script>

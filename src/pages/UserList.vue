@@ -10,18 +10,24 @@
 
           <q-item-section side top>
             <q-item-label caption
-              >{{ users.length }} pesonne{{
-                users.length > 1 ? 's' : ''
+              >{{ filtredUsers.length }} pesonne{{
+                filtredUsers.length > 1 ? 's' : ''
               }}</q-item-label
             >
           </q-item-section>
         </q-item>
 
         <q-separator spaced />
+        <q-input color="teal" filled v-model="search" label="name, email">
+          <template v-slot:prepend>
+            <q-icon name="search" size="30px" />
+          </template>
+        </q-input>
         <q-item-label header>List d'utilisateurs</q-item-label>
 
-        <template v-for="(item, index) in users" :key="index">
-          <list-item :label="item.fname" :caption="item.email" />
+        <load-list-item :len="5" v-if="isLoading" />
+        <template v-for="(item, index) in filtredUsers" :key="index">
+          <list-item :label="item.username" :caption="item.email" />
         </template>
       </q-list>
     </div>
@@ -29,30 +35,17 @@
 </template>
 
 <script setup lang="ts">
-import ListItem from '../components/User/ListItem.vue';
-import { ref } from 'vue';
+import { onMounted } from 'vue';
+import ListItem from '../components/ListItem/ListItem.vue';
+import LoadListItem from '../components/ListItem/LoadListItem.vue';
+import { useUserStore } from 'src/stores/user-store';
+import { storeToRefs } from 'pinia';
 
-const users = ref([
-  {
-    fname: 'herifanantenana',
-    email: 'fana@sowell.com',
-    points: 2,
-  },
-  {
-    fname: 'rakoto',
-    email: 'koto@sowell.com',
-    points: 2,
-  },
-  {
-    fname: 'Jeni',
-    email: 'jeni@sowell.com',
-    points: 150,
-  },
-  {
-    fname: 'zo',
-    email: 'zo@sowell.com',
-    points: 110,
-  },
-]);
+const userStore = useUserStore();
 
+const { isLoading, search, filtredUsers } = storeToRefs(userStore);
+
+onMounted(async () => {
+  await userStore.getUsersList();
+});
 </script>
