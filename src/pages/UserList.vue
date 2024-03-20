@@ -20,16 +20,16 @@
         <q-separator spaced />
         <q-item-label header>List d'utilisateurs</q-item-label>
 
-        <q-item v-for="user in users" :key="user.email">
-          <user-card :user="user" />
-        </q-item>
+        <template v-for="(item, index) in users" :key="index">
+          <list-item :label="item.fname" :caption="item.email" />
+        </template>
       </q-list>
     </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import UserCard from '../components/User/UserCard.vue';
+import ListItem from '../components/User/ListItem.vue';
 import { ref } from 'vue';
 
 const users = ref([
