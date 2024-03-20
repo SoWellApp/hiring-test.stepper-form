@@ -10,11 +10,6 @@ const postCollection = new PostCollection('post', config);
 
 export default boot(() => {
   PouchORM.LOGGING = true;
-  if (process.env.E2E_TEST) {
-    window.PouchORM = {
-      postCollection,
-    };
-  }
 });
 
 export { postCollection };

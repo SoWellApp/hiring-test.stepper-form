@@ -1,6 +1,10 @@
 <template>
   <div class="q-pa-md">
-    <item-list :allPosts="posts"></item-list>
+    <q-infinite-scroll :offset="250">
+      <q-list bordered separator v-for="(post, index) in posts" :key="index">
+        <item-list :postTitle="post.title" :postBody="post.body"></item-list>
+      </q-list>
+    </q-infinite-scroll>
   </div>
 </template>
 
