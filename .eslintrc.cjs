@@ -68,21 +68,37 @@ module.exports = {
 
   // add your custom rules here
   rules: {
+    'vue/no-setup-props-destructure': 'off',
     'prefer-promise-reject-errors': 'off',
 
-    quotes: ['warn', 'single', { avoidEscape: true }],
-
-    // this rule, if on, would require explicit return type on the `render` function
+    // TypeScript
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-
-    // in plain CommonJS modules, you can't use `import foo = require('foo')` to pass this rule, so it has to be disabled
-    '@typescript-eslint/no-var-requires': 'off',
-
-    // The core 'no-unused-vars' rules (in the eslint:recommended ruleset)
-    // does not work with type definitions
-    'no-unused-vars': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-var-requires': 'warn',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        types: {
+          Function: false,
+        },
+        extendDefaults: true,
+      },
+    ],
+    'vue/no-setup-props-destructure': 'off',
 
     // allow debugger during development only
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // linter
+    'comma-dangle': ['error', 'never'],
+    'prefer-template': 'error',
+    quotes: ['error', 'double'],
+    'array-bracket-spacing': ['error', 'never'],
+    'func-call-spacing': ['error', 'never'],
   },
 };

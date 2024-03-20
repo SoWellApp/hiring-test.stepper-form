@@ -88,17 +88,17 @@
   </q-form>
 </template>
 <script setup lang="ts">
-import { v4 as uuidv4 } from 'uuid';
-import { useFormStore } from 'src/stores/form-store';
+import { v4 as uuidv4 } from "uuid";
+import { useFormStore } from "src/stores/form-store";
 const { form } = useFormStore();
 
 const addDegree = () => {
   form.professional.degrees.push({
     id: uuidv4(),
-    title: '',
-    field: '',
-    details: '',
-    year: 2023,
+    title: "",
+    field: "",
+    details: "",
+    year: 2023
   });
 };
 

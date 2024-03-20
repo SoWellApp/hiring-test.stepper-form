@@ -22,21 +22,21 @@
 </template>
 
 <script setup lang="ts">
-import { ionLogOutOutline } from '@quasar/extras/ionicons-v5';
-import { SessionStorage } from 'quasar';
-import { computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { ionLogOutOutline } from "@quasar/extras/ionicons-v5";
+import { SessionStorage } from "quasar";
+import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 const $route = useRoute();
 const $router = useRouter();
 const title = computed(() => {
-  return $route.meta.title || 'Untitled page';
+  return $route.meta.title || "Untitled page";
 });
 const username = computed(() => {
-  return SessionStorage.getItem('loggedUser');
+  return SessionStorage.getItem("loggedUser");
 });
 
 const logout = () => {
-  SessionStorage.remove('loggedUser');
-  $router.push({ name: 'login' });
+  SessionStorage.remove("loggedUser");
+  $router.push({ name: "login" });
 };
 </script>
