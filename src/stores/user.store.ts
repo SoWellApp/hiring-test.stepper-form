@@ -1,11 +1,11 @@
-import { defineStore } from 'pinia'
-import { getUsers } from 'src/services/user-service'
-import { User } from 'src/types/interfaces';
-import { computed, ref } from 'vue';
+import { defineStore } from "pinia"
+import { getUsers } from "src/services/user-service"
+import { User } from "src/types/interfaces";
+import { computed, ref } from "vue";
 
-export const useUserStore = defineStore('users', () => {
+export const useUserStore = defineStore("users", () => {
     const usersList = ref<User[]>([]);
-    const search = ref('');
+    const search = ref("");
 
     const getAllUsers = async () => {
         const response = await getUsers();

@@ -19,10 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import ListItem from 'src/components/ListItem.vue';
-import { useUserStore } from 'src/stores/user.store';
-import { storeToRefs } from 'pinia';
+import { onMounted } from "vue";
+import ListItem from "src/components/ListItem.vue";
+import { useUserStore } from "src/stores/user.store";
+import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 
