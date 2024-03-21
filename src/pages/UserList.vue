@@ -11,7 +11,7 @@
           <q-item-section side top>
             <q-item-label caption
               >{{ filtredUsers.length }} pesonne{{
-                filtredUsers.length > 1 ? 's' : ''
+                filtredUsers.length > 1 ? "s" : ""
               }}</q-item-label
             >
           </q-item-section>
@@ -35,17 +35,17 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import ListItem from "../components/ListItem/ListItem.vue";
-import LoadListItem from "../components/ListItem/LoadListItem.vue";
-import { useUserStore } from "src/stores/user-store";
-import { storeToRefs } from "pinia";
+import { onMounted } from "vue"
+import ListItem from "../components/ListItem/ListItem.vue"
+import LoadListItem from "../components/ListItem/LoadListItem.vue"
+import { useUserStore } from "src/stores/user-store"
+import { storeToRefs } from "pinia"
 
-const userStore = useUserStore();
+const userStore = useUserStore()
 
-const { isLoading, search, filtredUsers } = storeToRefs(userStore);
+const { isLoading, search, filtredUsers } = storeToRefs(userStore)
 
 onMounted(async () => {
-  await userStore.getUsersList();
-});
+  await userStore.getUsersList()
+})
 </script>
