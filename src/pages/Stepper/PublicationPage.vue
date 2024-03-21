@@ -31,6 +31,6 @@
   </q-form>
 </template>
 <script setup lang="ts">
-import { useFormStore } from 'src/stores/form-store';
+import { useFormStore } from "src/stores/form-store";
 const { form } = useFormStore();
 </script>

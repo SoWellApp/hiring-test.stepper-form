@@ -93,24 +93,24 @@
   </q-layout>
 </template>
 <script setup lang="ts">
-import { ionEyeSharp, ionEyeOffSharp } from '@quasar/extras/ionicons-v5';
-import { SessionStorage } from 'quasar';
-import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useFormStore } from 'src/stores/form-store';
+import { ionEyeSharp, ionEyeOffSharp } from "@quasar/extras/ionicons-v5";
+import { SessionStorage } from "quasar";
+import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
+import { useFormStore } from "src/stores/form-store";
 
 enum PASSWORD_STRENGTH {
-  TOO_SHORT = 'Too Short',
-  WEAK = 'Weak',
-  MEDIUM = 'Medium',
-  STRONG = 'Strong',
-  VERY_STRONG = 'Very Strong',
+  TOO_SHORT = "Too Short",
+  WEAK = "Weak",
+  MEDIUM = "Medium",
+  STRONG = "Strong",
+  VERY_STRONG = "Very Strong",
 }
 
 const $router = useRouter();
 
-const username = ref('');
-const password = ref('');
+const username = ref("");
+const password = ref("");
 const showPassword = ref(false);
 const isLoading = ref(false);
 
@@ -155,30 +155,30 @@ const passwordStrength = computed(() => {
 const passwordHint = computed(() => {
   if (!password.value) {
     return {
-      label: 'Type a complex password',
-      color: '',
+      label: "Type a complex password",
+      color: ""
     };
   }
-  let color = '';
+  let color = "";
   if (passwordStrength.value === PASSWORD_STRENGTH.TOO_SHORT)
-    color = 'text-negative';
+    color = "text-negative";
   else if (
     passwordStrength.value === PASSWORD_STRENGTH.WEAK ||
     passwordStrength.value === PASSWORD_STRENGTH.MEDIUM
   )
-    color = 'text-warning';
-  else color = 'text-positive';
+    color = "text-warning";
+  else color = "text-positive";
   return {
     label: `Password strength: ${passwordStrength.value}`,
-    color,
+    color
   };
 });
 
 const handleSubmit = () => {
   if (isSubmitBtnDisabled.value) return;
-  SessionStorage.set('loggedUser', username.value);
+  SessionStorage.set("loggedUser", username.value);
   const { resetForm } = useFormStore();
   resetForm();
-  $router.push({ name: 'index' });
+  $router.push({ name: "index" });
 };
 </script>
