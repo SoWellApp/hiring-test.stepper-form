@@ -1,7 +1,9 @@
+import "pinia"
 import { defineStore } from "pinia"
 import { getUsers } from "src/services/user-service"
 import { User } from "src/types/interfaces";
 import { computed, ref } from "vue";
+import { SessionStorage } from "quasar";
 
 export const useUserStore = defineStore("users", () => {
     const usersList = ref<User[]>([]);
@@ -25,5 +27,9 @@ export const useUserStore = defineStore("users", () => {
         });
     });
 
-    return { usersList, getAllUsers, search, filteredUsersList }
+    const setConnectedUser = (username: string) => {
+        SessionStorage.set("loggedUser", username);
+    }
+
+    return { usersList, getAllUsers, search, filteredUsersList, setConnectedUser }
 })

@@ -5,7 +5,7 @@ import { test } from "tests/base-fixtures"
 
 const { Given, When, Then } = createBdd(test)
 
-Given("the user {string} exists", ({}, email: string) => {
+Given("the user {string} exists", ({ }, email: string) => {
   // NOTE: Do nothing
 })
 
@@ -33,7 +33,7 @@ When(
 
 Then(
   "I'm redirected to the Admin Manage users page",
-  async ({ page, pageObjects: {} }) => {
+  async ({ page, pageObjects: { } }) => {
     // TODO: implement
   }
 )
@@ -53,19 +53,17 @@ Then("I'm not redirected", async ({ page, pageObjects: { loginPage } }) => {
 
 When(
   "I type {string} on the {string} input",
-  async ({}, arg: string, arg1: string) => {
+  async ({ }, arg: string, arg1: string) => {
     // ...
   }
 )
 
-Then("I am redirected to the Admin Login page", async ({}) => {
+Then("I am redirected to the Admin Login page", async ({ }) => {
   // ...
 })
 
-Given("I am authenticated as {string}", async ({}, arg: string) => {
-  // ...
-})
 
-Given("my authentication expired", async ({}) => {
+
+Given("my authentication expired", async ({ }) => {
   // ...
 })

@@ -8,8 +8,12 @@
           </q-item-section>
 
           <q-item-section>
-            <q-item-label>Name</q-item-label>
-            <q-item-label caption>{{ firstname }} {{ lastname }}</q-item-label>
+            <q-item-label>Firstname</q-item-label>
+            <q-item-label caption data-testid="user-firstname">{{ firstname }}</q-item-label>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Lastname</q-item-label>
+            <q-item-label caption data-testid="user-lastname">{{ lastname }}</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -20,7 +24,7 @@
 
           <q-item-section>
             <q-item-label>Address</q-item-label>
-            <q-item-label caption>{{ city }}</q-item-label>
+            <q-item-label caption data-testid="user-city">{{ city }}</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -31,7 +35,7 @@
 
           <q-item-section>
             <q-item-label>Email</q-item-label>
-            <q-item-label caption>{{ email }}</q-item-label>
+            <q-item-label caption data-testid="user-email">{{ email }}</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
