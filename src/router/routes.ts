@@ -16,6 +16,7 @@ const routes: RouteRecordRaw[] = [
         name: "list",
         path: "list",
         component: () => import("pages/ListPage.vue")
+
       }
     ],
     beforeEnter: (to, from, next) => {

@@ -14,7 +14,7 @@ export default defineConfig({
   reporter: [["html", { outputFolder: "tests/playwright-report" }]],
   use: {
     screenshot: "only-on-failure",
-    baseURL: "http://127.0.0.1:8080"
+    baseURL: "http://127.0.0.1:8080/#/"
   },
   projects: [
     {
@@ -24,7 +24,7 @@ export default defineConfig({
   ],
   webServer: {
     command: "yarn dev:test",
-    url: "http://127.0.0.1:8080",
+    url: "http://127.0.0.1:8080/#/",
     reuseExistingServer: !process.env.CI,
     stdout: "ignore",
     stderr: "pipe"
