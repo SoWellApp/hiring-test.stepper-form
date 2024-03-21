@@ -58,19 +58,19 @@ import {
   PersonalPage,
   ProPage,
   PublicationPage,
-  SummaryPage,
-} from 'src/pages/Stepper';
+  SummaryPage
+} from "src/pages/Stepper";
 import {
   ionPersonOutline,
   ionDocumentAttachOutline,
   ionBookOutline,
-  ionSaveOutline,
-} from '@quasar/extras/ionicons-v5';
-import { ref } from 'vue';
+  ionSaveOutline
+} from "@quasar/extras/ionicons-v5";
+import { ref } from "vue";
 
 const stepper = ref();
 const step = ref(1);
 
-import { useFormStore } from 'src/stores/form-store';
+import { useFormStore } from "src/stores/form-store";
 const { form } = useFormStore();
 </script>
