@@ -19,6 +19,6 @@
 
 <script setup lang="ts">
 defineProps({
-  len: Number,
+  len: Number
 });
 </script>

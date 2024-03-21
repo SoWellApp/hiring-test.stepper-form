@@ -1,14 +1,14 @@
-import { defineStore } from 'pinia';
-import { getUsers } from 'src/services/UserService';
-import { computed, ref } from 'vue';
-import User from 'src/models/UserInterface';
+import { defineStore } from "pinia";
+import { getUsers } from "src/services/UserService";
+import { computed, ref } from "vue";
+import User from "src/models/UserInterface";
 
-export const useUserStore = defineStore('user', () => {
+export const useUserStore = defineStore("user", () => {
   const users = ref<User[]>([]);
 
   const isLoading = ref(false);
 
-  const search = ref('');
+  const search = ref("");
 
   const filtredUsers = computed(() => {
     return users.value.filter((user) => {
