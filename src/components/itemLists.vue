@@ -9,8 +9,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Post } from 'src/types';
-
 defineProps<{
   postTitle: string;
   postBody: string;

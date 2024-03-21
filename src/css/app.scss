@@ -1,1 +1,151 @@
-// app global css in SCSS form
+body {
+  color: $dark;
+  background-color: #fff;
+}
+
+div.q-field__control {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0px 8px;
+  display: flex;
+  align-items: center;
+  min-height: 48px !important;
+  border-radius: 8px !important;
+}
+div.q-field__append {
+  padding: 5px;
+}
+
+.q-field__control .q-field__label {
+  color: #bcc3c7;
+}
+.q-field--outlined .q-field__control:after {
+  transition: border-color 0s !important;
+}
+.q-field--outlined.q-field--highlighted .q-field__control::after {
+  min-height: 48px !important;
+}
+.q-field--standard .q-field__control:before {
+  border-bottom: 0px;
+}
+div.q-field__prepend > .q-icon {
+  padding-left: 8px;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+.text-semi-bold {
+  font-weight: 600;
+}
+
+.text-medium {
+  font-weight: 400;
+}
+
+.text-btn {
+  font-size: 0.875em;
+  font-weight: 600;
+  letter-spacing: 0px;
+  line-height: 24px;
+}
+
+.text-micro {
+  font-size: 0.625em;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+}
+
+.text-background {
+  color: #f3f4f5 !important;
+}
+.bg-background {
+  background: #f3f4f5 !important;
+}
+
+.text-dark {
+  color: $dark !important;
+}
+.bg-dark {
+  background: $dark !important;
+}
+
+.text-black-disabled {
+  color: $black-disabled !important;
+}
+.bg-black-disabled {
+  background: $black-disabled !important;
+}
+
+.q-toolbar {
+  padding: 0 24px;
+}
+
+.bg-primary-hover {
+  background: #eef8fd !important;
+}
+
+.text-primary-hover {
+  color: #c1ecff !important;
+}
+
+.bg-black-outline {
+  background-color: #bcc3c7;
+}
+
+.bg-light {
+  background-color: #f4f5f6;
+}
+
+.text-black-outline {
+  color: #bcc3c7;
+}
+
+.card-border-radius {
+  border-radius: 8px;
+}
+
+.bg-positive-outline {
+  background-color: rgba($positive, 0.1);
+}
+.text-positive-outline {
+  color: rgba($positive, 0.1);
+}
+
+.bg-negative-outline {
+  background-color: rgba($negative, 0.1);
+}
+.text-negative-outline {
+  color: rgba($negative, 0.1);
+}
+
+.bg-warning-outline {
+  background-color: rgba($warning, 0.1);
+}
+
+.bg-info-outline {
+  background-color: rgba($info, 0.1);
+}
+
+.text-info-outline {
+  color: rgba($info, 0.1);
+}
+
+.hiddenExpandIcon {
+  display: none !important;
+}
+
+// .sw-editable-cell:not(.selected) {
+//   .q-field--error .q-field__bottom,
+//   .q-icon.text-negative {
+//     display: none;
+//   }
+// }
+.sw-editable-cell.selected {
+  .q-field--error .q-field__bottom {
+    position: absolute;
+    bottom: 2em;
+  }
+}
