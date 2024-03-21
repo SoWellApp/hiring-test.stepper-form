@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <div class="q-pa-md" style="max-width: 350px">
-      <q-list bordered padding>
+      <q-list bordered padding data-testid="users-list">
         <q-item>
           <q-item-section>
             <q-item-label overline>MANAGERS</q-item-label>
@@ -18,7 +18,7 @@
         </q-item>
 
         <q-separator spaced />
-        <q-input color="teal" filled v-model="search" label="name, email">
+        <q-input color="teal" filled v-model="search" label="name, email" data-testid="search-input">
           <template v-slot:prepend>
             <q-icon name="search" size="30px" />
           </template>
@@ -27,7 +27,11 @@
 
         <load-list-item :len="5" v-if="isLoading" />
         <template v-for="(item, index) in filtredUsers" :key="index">
-          <list-item :label="item.username" :caption="item.email" />
+          <list-item
+            :label="item.username"
+            :caption="item.email"
+            class="user-item"
+            :data-testid="`user-item-${item.id}`" />
         </template>
       </q-list>
     </div>
