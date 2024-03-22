@@ -1,4 +1,4 @@
-import { PouchCollection } from 'pouchorm';
+import { PouchCollection } from "pouchorm";
 
 declare global {
   interface Window {

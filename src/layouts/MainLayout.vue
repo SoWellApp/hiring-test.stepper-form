@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title>{{ title }}</q-toolbar-title>
+        <q-toolbar-title data-testid="page-title">{{ title }}</q-toolbar-title>
 
         <div>Welcome, {{ username }}</div>
         <q-btn
@@ -10,8 +10,7 @@
           flat
           round
           :icon="ionLogOutOutline"
-          @click="logout"
-        ></q-btn>
+          @click="logout"></q-btn>
       </q-toolbar>
     </q-header>
 
@@ -22,21 +21,21 @@
 </template>
 
 <script setup lang="ts">
-import { ionLogOutOutline } from "@quasar/extras/ionicons-v5";
-import { SessionStorage } from "quasar";
-import { computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
-const $route = useRoute();
-const $router = useRouter();
+import { ionLogOutOutline } from "@quasar/extras/ionicons-v5"
+import { SessionStorage } from "quasar"
+import { computed } from "vue"
+import { useRoute, useRouter } from "vue-router"
+const $route = useRoute()
+const $router = useRouter()
 const title = computed(() => {
-  return $route.meta.title || "Untitled page";
-});
+  return $route.meta.title || "Untitled page"
+})
 const username = computed(() => {
-  return SessionStorage.getItem("loggedUser");
-});
+  return SessionStorage.getItem("loggedUser")
+})
 
 const logout = () => {
-  SessionStorage.remove("loggedUser");
-  $router.push({ name: "login" });
-};
+  SessionStorage.remove("loggedUser")
+  $router.push({ name: "login" })
+}
 </script>
