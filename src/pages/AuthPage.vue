@@ -9,12 +9,12 @@
             </div>
             <div class="column col content-center justify-center center">
               <div class="q-pl-md q-pr-md" style="max-width: 500px">
-                <h4 class="title">Login</h4>
+                <h4 class="title" data-testid="page-title">Login</h4>
                 <div class="subtitle">
                   Type a username and a complex password to log in
                 </div>
 
-                <q-form @submit="handleSubmit">
+                <q-form @submit="handleSubmit" data-testid="login-form">
                   <div>
                     <div
                       class="q-ml-xs q-mb-xs text-subtitle2 text-weight-bold">
@@ -22,6 +22,8 @@
                     </div>
                     <q-input
                       v-model.trim="username"
+                      data-testid="username-input"
+                      class="username-input"
                       dense
                       outlined
                       :rules="[
@@ -38,6 +40,8 @@
                     <q-input
                       v-model="password"
                       :type="showPassword ? 'text' : 'password'"
+                      data-testid="password-input"
+                      class="password-input"
                       dense
                       outlined
                       input-class="text-subtitle2 text-weight-bold"
@@ -46,10 +50,13 @@
                         <q-icon
                           :name="showPassword ? ionEyeOffSharp : ionEyeSharp"
                           class="cursor-pointer q-mr-sm lightenDark"
+                          data-testid="password-toggle-btn"
                           @click="showPassword = !showPassword" />
                       </template>
                       <template #hint>
-                        <div :class="passwordHint.color">
+                        <div
+                          :class="passwordHint.color"
+                          data-testid="password-hint">
                           {{ passwordHint.label }}
                         </div>
                       </template>
@@ -58,6 +65,7 @@
                   <div class="row q-mt-md">
                     <q-btn
                       label="Log in"
+                      data-testid="login-btn"
                       color="primary"
                       no-caps
                       unelevated
