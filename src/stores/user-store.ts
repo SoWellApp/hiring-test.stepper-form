@@ -1,14 +1,20 @@
-import { defineStore } from "pinia";
-import { getUsers } from "src/services/UserService";
-import { computed, ref } from "vue";
-import User from "src/models/UserInterface";
+import "pinia"
+import { defineStore } from "pinia"
+import { getUsers } from "src/services/UserService"
+import { computed, ref } from "vue"
+import User from "src/models/UserInterface"
+import { SessionStorage } from "quasar"
 
 export const useUserStore = defineStore("user", () => {
-  const users = ref<User[]>([]);
+  const users = ref<User[]>([])
 
-  const isLoading = ref(false);
+  const isLoading = ref(false)
 
-  const search = ref("");
+  const search = ref("")
+
+  const setConnectedUser = (username: string) => {
+    SessionStorage.set("loggedUser", username)
+  }
 
   const filtredUsers = computed(() => {
     return users.value.filter((user) => {
@@ -19,16 +25,16 @@ export const useUserStore = defineStore("user", () => {
           .includes(search.value.toLowerCase()) ||
         user.email.toLowerCase().includes(search.value.toLowerCase()) ||
         !search.value
-      );
-    });
-  });
+      )
+    })
+  })
 
   const getUsersList = async () => {
-    isLoading.value = true;
-    const response = await getUsers();
-    users.value = response.sort((a, b) => a.username.localeCompare(b.username));
-    isLoading.value = false;
-  };
+    isLoading.value = true
+    const response = await getUsers()
+    users.value = response.sort((a, b) => a.id - b.id)
+    isLoading.value = false
+  }
 
-  return { getUsersList, isLoading, filtredUsers, search };
-});
+  return { getUsersList, isLoading, filtredUsers, search, setConnectedUser }
+})

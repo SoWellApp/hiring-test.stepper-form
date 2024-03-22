@@ -179,6 +179,6 @@ const handleSubmit = () => {
   SessionStorage.set("loggedUser", username.value);
   const { resetForm } = useFormStore();
   resetForm();
-  $router.push({ name: "index" });
+  $router.push({ name: "user" });
 };
 </script>
