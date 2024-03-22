@@ -21,6 +21,7 @@
                       Username
                     </div>
                     <q-input
+                      data-testid="input-username"
                       class="input-username"
                       v-model.trim="username"
                       dense
@@ -38,6 +39,7 @@
                     </div>
                     <q-input
                       v-model="password"
+                      data-testid="input-password"
                       class="input-password"
                       :type="showPassword ? 'text' : 'password'"
                       dense

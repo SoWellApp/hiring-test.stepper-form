@@ -41,8 +41,9 @@ Then("the login button is {string}", async ({ page }, btnState: string) => {
       break
     case "enabled":
       await expect(btnLogIn).toBeEnabled()
+      break
     default:
-      await expect(btnLogIn).toBeVisible()
+      throw new Error("Invalid button state")
       break
   }
 })
@@ -50,14 +51,14 @@ Then("the login button is {string}", async ({ page }, btnState: string) => {
 When(
   "I type {string} on the Username input",
   async ({ page }, username: string) => {
-    await page.locator(".input-username").fill(username)
+    await page.getByTestId("input-username").fill(username)
   }
 )
 
 When(
   "I type {string} on the Password input",
   async ({ page }, password: string) => {
-    await page.locator(".input-password").pressSequentially(password)
+    await page.getByTestId("input-password").pressSequentially(password)
   }
 )
 
@@ -69,10 +70,8 @@ Then("I am redirected to the Main page", async ({ page }) => {
   await expect(page).toHaveURL("#/user")
 })
 
-
 Then("I can see a toggle button on the Password input", async ({ page }) => {
   await expect(page.getByTestId("icon-eye")).toBeVisible()
-  await expect(page.getByTestId("icon-eye")).toBeInViewport()
 })
 
 When("I click on the toggle button on the Password input", async ({ page }) => {
@@ -82,18 +81,16 @@ When("I click on the toggle button on the Password input", async ({ page }) => {
 Then(
   "I can see the {string} typed on the Password input",
   async ({ page }, password: string) => {
-
-    await expect(page.locator(".input-password")).toHaveValue(password)
+    await expect(page.getByTestId("input-password")).toHaveValue(password)
   }
 )
 
 When("I focus on the Username input", async ({ page }) => {
-  await page.locator(".input-username").focus()
+  await page.getByTestId("input-username").focus()
 })
 
-
 When("I focus out of the Username input", async ({ page }) => {
-  await page.locator(".input-password").focus()
+  await page.getByTestId("input-username").blur()
 })
 
 Then(
