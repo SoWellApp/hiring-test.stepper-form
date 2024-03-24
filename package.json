@@ -19,7 +19,7 @@
   "dependencies": {
     "@playwright/test": "^1.41.0",
     "@quasar/extras": "^1.16.4",
-    "axios": "^1.2.1",
+    "axios": "^1.6.0",
     "bluebird": "^3.7.2",
     "concurrently": "^8.0.1",
     "cross-env": "^7.0.3",
