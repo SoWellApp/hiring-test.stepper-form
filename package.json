@@ -19,6 +19,7 @@
   "dependencies": {
     "@playwright/test": "^1.41.0",
     "@quasar/extras": "^1.16.4",
+    "@types/lodash": "^4.17.0",
     "axios": "^1.2.1",
     "bluebird": "^3.7.2",
     "concurrently": "^8.0.1",
@@ -38,6 +39,7 @@
     "@quasar/app-webpack": "^3.9.2",
     "@types/bluebird": "^3.5.42",
     "@types/node": "^12.20.21",
+    "@types/seedrandom": "^3.0.8",
     "@types/type-check": "^0.3.30",
     "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
@@ -48,6 +50,7 @@
     "eslint-plugin-vue": "^9.0.0",
     "playwright-bdd": "^5.7.1",
     "prettier": "^2.5.1",
+    "seedrandom": "^3.0.5",
     "start-server-and-test": "^2.0.0",
     "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",

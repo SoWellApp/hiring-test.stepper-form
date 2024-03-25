@@ -1,6 +1,6 @@
 <template>
-  <q-page padding>
-    <div class="q-pa-md" style="max-width: 350px">
+  <q-page padding class="wrapper">
+    <div class="q-pa-md left-side" style="max-width: 350px">
       <q-list bordered padding data-testid="users-list">
         <q-item>
           <q-item-section>
@@ -18,7 +18,12 @@
         </q-item>
 
         <q-separator spaced />
-        <q-input color="teal" filled v-model="search" label="name, email" data-testid="search-input">
+        <q-input
+          color="teal"
+          filled
+          v-model="search"
+          label="name, email"
+          data-testid="search-input">
           <template v-slot:prepend>
             <q-icon name="search" size="30px" />
           </template>
@@ -35,21 +40,67 @@
         </template>
       </q-list>
     </div>
+    <div class="q-pa-md right-side">
+      <h4>Générateur de nombre <br> aléatoire</h4>
+      <sw-random-number-generate
+        label="Générer"
+        seed="seed"
+        :min="0"
+        :max="100"
+        :float="false"
+        :icon="ionRefresh"
+        @send-number="changeNumber">
+      </sw-random-number-generate>
+
+      <div v-show="randomNumber">
+        <p>nombre dénéré est</p>
+        <p class="randNum">
+          {{ randomNumber }}
+        </p>
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue"
+import { onMounted, ref } from "vue"
 import ListItem from "../components/ListItem/ListItem.vue"
 import LoadListItem from "../components/ListItem/LoadListItem.vue"
 import { useUserStore } from "src/stores/user-store"
 import { storeToRefs } from "pinia"
+import SwRandomNumberGenerate from "../components/SwRandomNumberGenerate.vue"
+import { ionRefresh } from "@quasar/extras/ionicons-v5"
+
+const randomNumber = ref<number>()
+
 
 const userStore = useUserStore()
 
 const { isLoading, search, filtredUsers } = storeToRefs(userStore)
 
+const changeNumber = (num: number) => {
+  randomNumber.value = num
+}
 onMounted(async () => {
   await userStore.getUsersList()
 })
 </script>
+
+<style scoped lang="css">
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.right-side {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.right-side .randNum {
+  font-size: 4rem;
+  font-weight: 600;
+}
+</style>

@@ -3,7 +3,6 @@ import { createBdd } from "playwright-bdd"
 import { DataTable } from "@cucumber/cucumber"
 
 import { test } from "tests/base-fixtures"
-import { users } from "../fixture/users"
 import { Promise } from "bluebird"
 
 const { Given, When, Then } = createBdd(test)
@@ -22,11 +21,11 @@ Given(
 )
 
 // 2. Missing step definition for "tests/integration/view-users-list/index.feature:5:9"
-Given("I am on the user page", async ({ page }) => {
+Given("I am on the user page", async ({ page, usersFixture }) => {
   await page.route("**/users", (route) =>
     route.fulfill({
       status: 200,
-      json: users
+      json: usersFixture
     })
   )
   await page.goto("#/user")
@@ -67,7 +66,9 @@ Then(
         .getByTestId("users-list")
         .locator(".user-item")
         .nth(index)
-      await expect(element.getByTestId("label-item")).toHaveText(row["user name"])
+      await expect(element.getByTestId("label-item")).toHaveText(
+        row["user name"]
+      )
       await expect(element.getByTestId("caption-item")).toHaveText(row.email)
     })
     // ...
