@@ -10,7 +10,7 @@ const routes: RouteRecordRaw[] = [
         name: "post",
         path: "",
         component: () => import("pages/Posts/PostPage.vue"),
-        meta: { title: "Post list" }
+        meta: { title: "PostsList" }
       }
       // {
       //   name: 'index',

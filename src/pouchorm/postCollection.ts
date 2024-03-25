@@ -1,4 +1,4 @@
-import { IModel, PouchCollection, PouchORM } from 'pouchorm';
+import { IModel, PouchCollection, PouchORM } from "pouchorm";
 PouchORM.LOGGING = true;
 
 export interface IPost extends IModel {
@@ -10,9 +10,9 @@ export interface IPost extends IModel {
 
 export class PostCollection extends PouchCollection<IPost> {
   async beforeInit(): Promise<void> {
-    console.log('pouchorm beforeInit');
+    console.log("pouchorm beforeInit");
   }
   async afterInit(): Promise<void> {
-    console.log('pouchorm afterInit');
+    console.log("pouchorm afterInit");
   }
 }

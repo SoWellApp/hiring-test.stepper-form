@@ -7,8 +7,8 @@ export class LoginPage extends BasePage {
   public get elements() {
     return {
       inputs: {
-        email: `input[type="email"]`,
-        password: `input[type="password"]`
+        email: "input[type=\"email\"]",
+        password: "input[type=\"password\"]"
       },
       btns: {
         submit: { name: "Login" }

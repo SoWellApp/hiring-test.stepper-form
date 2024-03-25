@@ -10,8 +10,8 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { configure } = require("quasar/wrappers");
-const path = require("path");
+const { configure } = require("quasar/wrappers")
+const path = require("path")
 
 module.exports = configure(function (ctx) {
   return {
@@ -31,7 +31,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: ["axios", 'pouchorm'],
+    boot: ["axios", "pouchorm", "pinia"],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: ["app.scss", "fonts.scss"],
@@ -81,15 +81,15 @@ module.exports = configure(function (ctx) {
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
       // chainWebpack (/* chain */) {}
       chainWebpack(chain) {
-        const nodePolyfillWebpackPlugin = require("node-polyfill-webpack-plugin");
-        chain.plugin("node-polyfill").use(nodePolyfillWebpackPlugin);
+        const nodePolyfillWebpackPlugin = require("node-polyfill-webpack-plugin")
+        chain.plugin("node-polyfill").use(nodePolyfillWebpackPlugin)
       },
       extendWebpack(cfg) {
         cfg.resolve.alias = {
           ...cfg.resolve.alias, // This adds the existing alias
           src: path.resolve(__dirname, "./src"),
           tests: path.resolve(__dirname, "./tests")
-        };
+        }
       }
     },
 
@@ -117,7 +117,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ["Notify"]
     },
 
     // animations: 'all', // --- includes all animations
@@ -199,7 +199,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true,
+      hideSplashscreen: true
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/developing-electron-apps/configuring-electron
@@ -235,5 +235,5 @@ module.exports = configure(function (ctx) {
         // extendWebpackPreload also available besides this chainWebpackPreload
       }
     }
-  };
-});
+  }
+})
