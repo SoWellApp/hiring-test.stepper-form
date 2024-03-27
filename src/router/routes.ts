@@ -11,13 +11,13 @@ const routes: RouteRecordRaw[] = [
         path: "",
         component: () => import("pages/Posts/PostPage.vue"),
         meta: { title: "PostsList" }
+      },
+      {
+        name: "map",
+        path: "map",
+        component: () => import("pages/MapDisplayer.vue"),
+        meta: { title: "Map" }
       }
-      // {
-      //   name: 'index',
-      //   path: '',
-      //   component: () => import('pages/IndexPage.vue'),
-      //   meta: { title: 'Index' },
-      // },
     ],
     beforeEnter: (to, from, next) => {
       if (!SessionStorage.has("loggedUser") && to.name !== "login") {
