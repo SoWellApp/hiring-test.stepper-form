@@ -10,7 +10,7 @@
             :label="issue.label"
             :sublabel="issue.sublabel"
             :hour="issue.hour"
-            :status="issue.status"></sw-issue-history-card>
+            :status="issue.status" />
         </div>
       </div>
     </div>
