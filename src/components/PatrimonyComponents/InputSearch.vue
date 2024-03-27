@@ -1,9 +1,11 @@
 <template>
   <q-input
     class="search-input"
+    outlined
+    rounded
     color="transparent"
-    filled
-    v-model="searchInput">
+    v-model="searchInput"
+    placeholder="Search">
     <template v-slot:prepend>
       <q-icon name="search" size="30px" />
     </template>
@@ -11,14 +13,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, watch } from "vue"
+
+const emit = defineEmits<{(e: "getValue", value: string): void }>()
 
 const searchInput = ref<string>("")
+
+watch(searchInput, () => {
+  if (searchInput.value.length > 3) {
+    emit("getValue", searchInput.value)
+  } else {
+    emit("getValue", "")
+  }
+})
 </script>
 
 <style scoped>
 .search-input {
+  font-size: 1rem;
   min-width: 344px;
-  font-size: 16px;
+  border: none;
 }
 </style>
