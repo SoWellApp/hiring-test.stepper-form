@@ -3,7 +3,7 @@ export default {
     status: {
       pending: "En attente",
       done: "Traité",
-      ongoing: "En cours..."
+      ongoing: "En cours"
     }
   }
 }

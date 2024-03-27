@@ -1,49 +1,42 @@
 <template>
-  <q-card flat class="mb-2 rounded">
+  <q-card flat style="margin: 0.5em 0; border-radius: 0.5em">
     <q-card-section>
       <div class="row justify-between items-center">
         <div class="col-9 row items-center">
           <q-icon
-            name="today"
+            :name="icon"
             class="col-2 q-mr-sm"
             size="48px"
             color="primary" />
           <div class="col content-items">
             <div
-              v-if="label.length > 25"
               class="text-weight-bold"
               style="font-size: 14px; line-height: 26px">
-              {{ label.substring(0, 25) + "..." }}
+              {{ truncatedLabel }}
             </div>
             <div
-              v-else
-              class="text-weight-bold"
-              style="font-size: 14px; line-height: 26px">
-              {{ label }}
-            </div>
-            <div
-              v-if="sublabel.length > 25"
-              class="text-grey-9"
+              class="sw-text-grey"
               style="font-size: 12px; line-height: 16px">
-              {{ sublabel.substring(0, 25) + "..." }}
-            </div>
-            <div
-              v-else
-              class="text-grey text-capitalize"
-              style="font-size: 12px; line-height: 16px">
-              {{ sublabel }}
+              {{ truncatedSublabel }}
             </div>
           </div>
         </div>
-        <div class="col-3 text-right">
-          <div class="size" style="line-height: 22px">{{ `${hour} >` }}</div>
+        <div class="col-3 content-items">
+          <div class="size" style="line-height: 22px">{{ `${hour}  >` }}</div>
           <q-chip
-            style="margin: 0 !important; padding: 0 0.5em !important"
-            :color="info.color"
-            :text-color="info.textColor">
-            <q-icon class="q-mr-xs" v-if="info.icon" :name="info.icon" />
+            style="
+              margin: 0 !important;
+              padding: 0 0.5em !important;
+              height: 1.125em;
+            "
+            :color="statusChip.color"
+            :text-color="statusChip.textColor">
+            <q-icon
+              class="q-mr-xs"
+              v-if="statusChip.icon"
+              :name="statusChip.icon" />
             <div class="text-caption text-bold size">
-              {{ info.label }}
+              {{ statusChip.label }}
             </div>
           </q-chip>
         </div>
@@ -65,15 +58,31 @@ const props = defineProps<{
 
 const { t } = useI18n()
 
-const info = computed(() => {
+const truncatedLabel = computed(() => {
+  if (props.label.length > 22) {
+    return `${props.label.substring(0, 22)}...`
+  } else {
+    return props.label
+  }
+})
+
+const truncatedSublabel = computed(() => {
+  if (props.sublabel.length > 30) {
+    return `${props.sublabel.substring(0, 30)}...`
+  } else {
+    return props.sublabel
+  }
+})
+
+const statusChip = computed(() => {
   switch (props.status) {
     case "pending":
       return {
-        icon: "",
-        color: "warning-outline",
-        textColor: "warning",
-        label: t("history.status.pending"),
-        style: "pending"
+        icon: "done",
+        color: "positive-outline",
+        textColor: "positive",
+        label: t("history.status.done"),
+        style: "done"
       }
     case "ongoing":
       return {
@@ -86,11 +95,11 @@ const info = computed(() => {
 
     default:
       return {
-        icon: "done",
-        color: "positive-outline",
-        textColor: "positive",
-        label: t("history.status.done"),
-        style: "done"
+        icon: "",
+        color: "warning-outline",
+        textColor: "warning",
+        label: t("history.status.pending"),
+        style: "pending"
       }
   }
 })
@@ -99,9 +108,17 @@ const info = computed(() => {
 .size {
   font-size: 12px;
 }
-.content-items {
+.col.content-items {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+.col-3.content-items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.sw-text-grey {
+  color: #849298;
 }
 </style>
