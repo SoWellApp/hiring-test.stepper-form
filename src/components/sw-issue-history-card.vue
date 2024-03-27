@@ -76,14 +76,6 @@ const truncatedSublabel = computed(() => {
 
 const statusChip = computed(() => {
   switch (props.status) {
-    case "ongoing":
-      return {
-        icon: "",
-        color: "info-outline",
-        textColor: "info",
-        label: t("history.status.ongoing"),
-        style: "ongoing"
-      }
     case "done":
       return {
         icon: "done",
@@ -91,6 +83,14 @@ const statusChip = computed(() => {
         textColor: "positive",
         label: t("history.status.done"),
         style: "done"
+      }
+    case "ongoing":
+      return {
+        icon: "",
+        color: "info-outline",
+        textColor: "info",
+        label: t("history.status.ongoing"),
+        style: "ongoing"
       }
 
     default:
