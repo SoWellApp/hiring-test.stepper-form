@@ -1,15 +1,14 @@
 <template>
   <div class="q-pa-sm" style="background-color: #f3f4f5">
     <div class="container">
-      <div class="row justify-center">
-        <!-- <div class="col"> -->
+      <div class="row justify-center q-gutter-md">
         <sw-action-card
           v-for="(action, index) in actionsList"
           :key="index"
           :label="action.label"
           :icon="action.icon"
-          :mode="action.mode" />
-        <!-- </div> -->
+          :mode="action.mode"
+          :class="`col-${action.col}`" />
       </div>
     </div>
     <div class="container">
@@ -46,38 +45,45 @@ const actionsList = ref<
   {
     icon: string
     label: string
-    mode: string
+    mode: "xs" | "md" | "lg"
+    col: number
   }[]
 >([
   {
     icon: ionPaperPlane,
     label: "Signaler",
-    mode: "md"
+    mode: "md",
+    col: 5
   },
   {
     icon: ionDocument,
     label: "Contrôler",
-    mode: "md"
+    mode: "md",
+    col: 5
   },
   {
     icon: ionColorFill,
     label: "Plomberie",
-    mode: "lg"
+    mode: "lg",
+    col: 5
   },
   {
     icon: ionLockClosed,
     label: "Serrurerie",
-    mode: "lg"
+    mode: "lg",
+    col: 5
   },
   {
     icon: ionColorFill,
     label: "Fuite d'eau",
-    mode: "xs"
+    mode: "xs",
+    col: 11
   },
   {
     icon: ionColorFill,
     label: "Humidité",
-    mode: "xs"
+    mode: "xs",
+    col: 11
   }
 ])
 
