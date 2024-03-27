@@ -33,7 +33,8 @@
     "vue": "^3.0.0",
     "vue-router": "^4.0.0",
     "pouchorm": "^2.1.2",
-    "events": "^3.3.0"
+    "events": "^3.3.0",
+    "@fawmi/vue-google-maps": "^0.9.3"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.3.1",
