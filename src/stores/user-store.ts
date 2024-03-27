@@ -2,7 +2,7 @@ import "pinia"
 import { defineStore } from "pinia"
 import { getUsers } from "src/services/UserService"
 import { computed, ref } from "vue"
-import User from "src/models/UserInterface"
+import { User} from "src/types/index"
 import { SessionStorage } from "quasar"
 
 export const useUserStore = defineStore("user", () => {
